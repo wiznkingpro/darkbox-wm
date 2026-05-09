@@ -1,0 +1,12 @@
+
+dwl
+*.o
+config.h
+
+
+*.swp
+*.swo
+*~
+
+
+protocols/
