@@ -1,19 +1,18 @@
-use smithay::input::keyboard::Keysym;
-use super::config::*;
-use super::compositor::DarkBox;
+// src/keybindings.rs
+use crate::config::{Action, get_bindings};
+use crate::compositor::DarkBox;
 
-pub fn handle_key(compositor: &mut DarkBox, keysym: Keysym, modifiers: u32) {
-    for (mods, key, action) in KEYBINDINGS {
-        if *mods == modifiers && *key == keysym {
-            match action {
+pub fn handle_key(compositor: &mut DarkBox, key: u32, modifiers: u32) {
+    for binding in get_bindings() {
+        if binding.mods == modifiers && binding.key == key {
+            match binding.action {
                 Action::SpawnTerminal => {
-                    let _ = std::process::Command::new(TERMINAL)
+                    let _ = std::process::Command::new(crate::config::TERMINAL)
                         .spawn();
                 }
                 Action::FocusNext => {
                     if compositor.focused + 1 < compositor.windows.len() {
                         compositor.focused += 1;
-                        // обновить фокус ввода
                     }
                 }
                 Action::FocusPrev => {
@@ -21,12 +20,8 @@ pub fn handle_key(compositor: &mut DarkBox, keysym: Keysym, modifiers: u32) {
                         compositor.focused -= 1;
                     }
                 }
-                Action::ResizeHoriz(delta) => {
-                    if let Some(window) = compositor.windows.get_mut(compositor.focused) {
-                        let current = window.geometry();
-                        // Здесь нужно правильно изменить размер через Wayland
-                        // Для простоты оставляем заглушку
-                    }
+                Action::ResizeHoriz(_delta) => {
+                    // TODO: implement resize
                 }
                 Action::CloseWindow => {
                     if let Some(window) = compositor.windows.get(compositor.focused) {
