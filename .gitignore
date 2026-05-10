@@ -1,12 +1,81 @@
+# Стандартный .gitignore для Rust проекта
 
-dwl
+# Скомпилированные файлы
+debug/
+target/
+
+# Файлы окружения Cargo
+.cargo/
+
+# Бинарники (не нужны в репозитории, собираются из исходников)
+darkbox-wm
 *.o
-config.h
+*.so
+*.dylib
 
+# Библиотеки и временные файлы
+*.rlib
+*.rmeta
+*.d
+*.dSYM/
 
+# Кэш компиляции
+**/*.rs.bk
+*.pdb
+
+# Файлы IDE и редакторов
+.vscode/
+.idea/
 *.swp
 *.swo
 *~
+*.sublime-workspace
+*.sublime-project
 
+# Файлы ОС
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 
-protocols/
+# Логи
+*.log
+
+# Система сборки
+Makefile.bak
+*.orig
+
+# Файлы пакетов (если будут генерироваться)
+*.deb
+*.rpm
+*.pkg.tar.zst
+*.AppImage
+dist/
+build/
+
+# Тестовые покрытия
+tarpaulin-report.html
+profdata/
+coverage/
+
+# Файлы для бенчмарков
+/criterion/
+
+# IDE Rust
+.rustfmt.toml
+.clippy.toml
+
+# Файл конфигурации (пользователи создают свой локально)
+config.h
+!config.def.h
+
+# Архивы и временные папки
+*.zip
+*.tar.gz
+*.tgz
+tmp/
+temp/

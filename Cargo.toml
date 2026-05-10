@@ -1,0 +1,15 @@
+[package]
+name = "darkbox-wm"
+version = "1.0.0"
+edition = "2021"
+description = "Minimalistic Wayland compositor for old netbooks"
+
+[dependencies]
+smithay = { version = "0.3", features = ["backend_winit", "renderer_glium", "xwayland"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[profile.release]
+opt-level = "s"  
+lto = true     
+strip = true  
