@@ -1,4 +1,3 @@
-// src/config.rs
 pub const MODKEY: u32 = 0x40; // Super key
 
 pub const KEY_ENTER: u32 = 36;

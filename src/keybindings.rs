@@ -1,8 +1,9 @@
-// src/keybindings.rs
 use crate::config::{Action, get_bindings};
 use crate::compositor::DarkBox;
 
 pub fn handle_key(compositor: &mut DarkBox, key: u32, modifiers: u32) {
+    println!("Key pressed: {} with mods: {}", key, modifiers);
+    
     for binding in get_bindings() {
         if binding.mods == modifiers && binding.key == key {
             match binding.action {
@@ -11,22 +12,16 @@ pub fn handle_key(compositor: &mut DarkBox, key: u32, modifiers: u32) {
                         .spawn();
                 }
                 Action::FocusNext => {
-                    if compositor.focused + 1 < compositor.windows.len() {
-                        compositor.focused += 1;
-                    }
+                    // TODO: implement
                 }
                 Action::FocusPrev => {
-                    if compositor.focused > 0 {
-                        compositor.focused -= 1;
-                    }
+                    // TODO: implement
                 }
                 Action::ResizeHoriz(_delta) => {
-                    // TODO: implement resize
+                    // TODO: implement
                 }
                 Action::CloseWindow => {
-                    if let Some(window) = compositor.windows.get(compositor.focused) {
-                        window.close();
-                    }
+                    // TODO: implement
                 }
                 Action::Quit => {
                     std::process::exit(0);
